@@ -8,14 +8,14 @@ const bot = new TelegramBot(token, { polling: true });
 console.log(new Date().toLocaleString(), '--Bot has been started...');
 
 bot.on('message', (msg) => {
-  console.log(new Date().toLocaleString(), '--收到来自:', msg.chat.username, '的消息:', msg.text);
+  console.log(new Date().toLocaleString(), '--received from:', msg.chat.username, 'news :', msg.text);
   msgHandler(msg);
 });
 
 function msgHandler(msg) {
   switch (true) {
     case msg.text.indexOf('/start') === 0:
-      bot.sendMessage(msg.chat.id, '👋你好！很高兴能与您交谈。有什么我可以帮您的吗？');
+      bot.sendMessage(msg.chat.id, '👋Xin chào! Thật là vinh hạnh khi được nói chuyện với bạn. tôi có thể làm gì cho bạn ？');
       break;
     default:
       chatGpt(msg, bot);
@@ -31,7 +31,7 @@ async function chatGpt(msg, bot) {
     bot.sendMessage(msg.chat.id, response);
   }catch(err) {
     console.log(err)
-    bot.sendMessage(msg.chat.id, '😭出错了，我需要休息一下。');
+    bot.sendMessage(msg.chat.id, '😭 Đã xảy ra sự cố và tôi cần nghỉ ngơi.');
     throw err
   }
 }
